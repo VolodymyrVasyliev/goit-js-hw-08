@@ -1,0 +1,36 @@
+ul,
+li {
+  list-style-type: none;
+}
+
+img {
+  display: block;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.gallery-item {
+  width: calc(33.333% - 24px);
+}
+.gallery-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.gallery-image:hover {
+  transform: scale(1.05);
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: 0.4s, ease;
+}
+
+.modal img {
+  width: 1112px;
+  height: 640px;
+}
