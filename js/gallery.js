@@ -53,16 +53,16 @@ galleryContainer.addEventListener('click', handleModalOpen);
 
 function handleModalOpen(event) {
   event.preventDefault();
-  const target = event.target.closest('.gallery-image');
+  if (event.currentTarget === event.target) return;
 
-  if (!target) return;
-
-  const preview = target.src;
-  const image = images.find(img => img.preview === preview);
+  const galleryItem = event.target.closest('.gallery-item');
+  const originalSrc = galleryItem.querySelector('.gallery-image').dataset.source;
+  
+  console.log(originalSrc);
 
   const instance = basicLightbox.create(`
     <div id="modal" class="modal">
-      <img class="modal-image" src="${image.original}" alt="${image.description}">
+      <img class="modal-image" src="${originalSrc}" alt="${event.target.alt}">
     </div>
   `);
 
@@ -80,7 +80,7 @@ function createGalleryItem(arr) {
       ({ preview, original, description }) => `
       <li class="gallery-item">
         <a class="gallery-link" href="${original}">
-          <img class="gallery-image" src="${preview}" alt="${description}">
+          <img class="gallery-image" data-source="${original}" src="${preview}" alt="${description}">
         </a>
       </li>
     `
